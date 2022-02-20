@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+     <!--horses-->
+    <bean name="horse1" class="by.lamaka.race.model.Horse" init-method="init">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Kesha"/>
+    </bean>
+    <bean name="horse2" class="by.lamaka.race.model.Horse" init-method="init">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="name" value="Klop"/>
+    </bean>
+    <bean name="horse3" class="by.lamaka.race.model.Horse" init-method="init">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="name" value="Semen"/>
+    </bean>
+
+    <!--riders-->
+    <bean name="rider1" class="by.lamaka.race.model.Rider" init-method="init">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Lera"/>
+    </bean>
+    <bean name="rider2" class="by.lamaka.race.model.Rider" init-method="init">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="name" value="Katya"/>
+    </bean>
+    <bean name="rider3" class="by.lamaka.race.model.Rider" init-method="init">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="name" value="Sasha"/>
+    </bean>
+
+    <!--pairs-->
+    <bean name="pair1" class="by.lamaka.race.model.Pair">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="rider" ref="rider1"/>
+        <constructor-arg name="horse" ref="horse3"/>
+    </bean>
+    <bean name="pair2" class="by.lamaka.race.model.Pair">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="rider" ref="rider2"/>
+        <constructor-arg name="horse" ref="horse2"/>
+    </bean>
+    <bean name="pair3" class="by.lamaka.race.model.Pair">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="rider" ref="rider3"/>
+        <constructor-arg name="horse" ref="horse1"/>
+    </bean>
+
+    <!--services-->
+    <bean name="infoRaceService" class="by.lamaka.race.service.impl.InfoRaceServiceImpl"/>
+    <bean name="userInputService" class="by.lamaka.race.service.impl.UserInputServiceImpl"/>
+    <bean name="raceManagementService" class="by.lamaka.race.service.impl.RaceManagementServiceImpl">
+        <constructor-arg name="infoRaceService" ref="infoRaceService"/>
+        <constructor-arg name="userInputService" ref="userInputService"/>
+        <constructor-arg name="pairs" ref="pairs"/>
+    </bean>
+
+<util:list id="pairs" list-class="java.util.ArrayList">
+    <ref bean="pair1"/>
+    <ref bean="pair2"/>
+    <ref bean="pair3"/>
+</util:list>
+
+</beans>
