@@ -51,7 +51,7 @@
     <!--services-->
     <bean name="infoRaceService" class="by.lamaka.race.service.impl.InfoRaceServiceImpl"/>
     <bean name="userInputService" class="by.lamaka.race.service.impl.UserInputServiceImpl"/>
-    <bean name="raceManagementService" class="by.lamaka.race.service.impl.RaceManagementServiceImpl">
+    <bean name="raceManagementService" class="by.lamaka.race.service.impl.RaceManagementServiceImpl" scope="prototype">
         <constructor-arg name="infoRaceService" ref="infoRaceService"/>
         <constructor-arg name="userInputService" ref="userInputService"/>
         <constructor-arg name="pairs" ref="pairs"/>

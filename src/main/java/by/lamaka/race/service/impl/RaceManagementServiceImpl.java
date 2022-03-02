@@ -19,7 +19,6 @@ public class RaceManagementServiceImpl implements RaceManagementService {
 
     @Override
     public void startRace() {
-        Map<Pair, Long> pairsWithTime = new LinkedHashMap<>();
         System.out.println("WELCOME TO THE HORSE RACE");
 
         infoRaceService.getPairInfo(pairs);
