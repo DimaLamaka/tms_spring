@@ -1,9 +1,11 @@
 package by.lamaka.race.service.impl;
 
 import by.lamaka.race.service.UserInputService;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class UserInputServiceImpl implements UserInputService {
     @Override
     public int getUserInput() {
