@@ -5,17 +5,26 @@ import by.lamaka.race.service.InfoRaceService;
 import by.lamaka.race.service.RaceManagementService;
 import by.lamaka.race.service.UserInputService;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
+@Component(BeanDefinition.SCOPE_PROTOTYPE)
 public class RaceManagementServiceImpl implements RaceManagementService {
     InfoRaceService infoRaceService;
     UserInputService userInputService;
     List<Pair> pairs;
+
+    @Autowired
+    public RaceManagementServiceImpl(InfoRaceService infoRaceService, UserInputService userInputService, List<Pair> pairs) {
+        this.infoRaceService = infoRaceService;
+        this.userInputService = userInputService;
+        this.pairs = pairs;
+    }
 
     @Override
     public void startRace() {
@@ -39,9 +48,9 @@ public class RaceManagementServiceImpl implements RaceManagementService {
 
         infoRaceService.getWinnerInfo(pairs.get(0));
 
-        if(userInput==pairs.get(0).getId()){
+        if (userInput == pairs.get(0).getId()) {
             System.out.println("Your bet has won!!!");
-        }else {
+        } else {
             System.out.println("Your bet has lost!!!");
         }
 

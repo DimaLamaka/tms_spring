@@ -2,10 +2,11 @@ package by.lamaka.race.service.impl;
 
 import by.lamaka.race.model.Pair;
 import by.lamaka.race.service.InfoRaceService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-
+@Component
 public class InfoRaceServiceImpl implements InfoRaceService {
     @Override
     public void getPairInfo(List<Pair> pairs) {
